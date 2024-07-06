@@ -3,6 +3,7 @@ package com.github.ryamal.taskmanagerapi.model
 import jakarta.persistence.*
 import java.util.*
 
+
 @Entity
 @Table(name = "tasks")
 data class Task(
@@ -13,12 +14,12 @@ data class Task(
     @Column(nullable = false)
     val title: String,
 
-    @Column(length = 2000)
+    @Column(length = 2000, nullable = true)
     val description: String? = null,
 
     @Column(nullable = false)
-    val completed: Boolean,
+    val completed: Boolean = false,
 
     @Temporal(TemporalType.TIMESTAMP)
-    val creationDate: Date = Date(),
+    val creationDate: Date? = null,
 )

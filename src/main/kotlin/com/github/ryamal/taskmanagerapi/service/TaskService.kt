@@ -2,6 +2,7 @@ package com.github.ryamal.taskmanagerapi.service
 
 import com.github.ryamal.taskmanagerapi.model.Task
 import com.github.ryamal.taskmanagerapi.repository.TaskRepository
+import com.github.ryamal.taskmanagerapi.utils.DateUtil
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -47,116 +48,38 @@ class TaskService(private val taskRepository: TaskRepository) {
     }
 
     fun getTodayTasks(completed: Boolean): List<Task> {
-        val endOfDay = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 23)
-            set(Calendar.MINUTE, 59)
-            set(Calendar.SECOND, 59)
-            set(Calendar.MILLISECOND, 999)
-        }.time
-
-        val startOfDay = Calendar.getInstance().apply {
-            add(Calendar.DAY_OF_YEAR, -1)
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time
-
+        val endOfDay = DateUtil.getEndOfDay()
+        val startOfDay = DateUtil.getStartOfDay()
         return taskRepository.findByCreationDateBetweenAndCompleted(startOfDay, endOfDay, completed)
     }
 
     fun getTodayTasks(): List<Task> {
-        val endOfDay = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 23)
-            set(Calendar.MINUTE, 59)
-            set(Calendar.SECOND, 59)
-            set(Calendar.MILLISECOND, 999)
-        }.time
-
-        val startOfDay = Calendar.getInstance().apply {
-            add(Calendar.DAY_OF_YEAR, -1)
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time
-
+        val endOfDay = DateUtil.getEndOfDay()
+        val startOfDay = DateUtil.getStartOfDay()
         return taskRepository.findByCreationDateBetween(startOfDay, endOfDay)
     }
 
     fun getCurrentWeekTasks(completed: Boolean): List<Task> {
-        val endOfDay = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 23)
-            set(Calendar.MINUTE, 59)
-            set(Calendar.SECOND, 59)
-            set(Calendar.MILLISECOND, 999)
-        }.time
-
-        val startOfWeek = Calendar.getInstance().apply {
-            set(Calendar.DAY_OF_WEEK, firstDayOfWeek)
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time
-
+        val endOfDay = DateUtil.getEndOfDay()
+        val startOfWeek = DateUtil.getStartOfWeek()
         return taskRepository.findByCreationDateBetweenAndCompleted(startOfWeek, endOfDay, completed)
     }
 
     fun getCurrentWeekTasks(): List<Task> {
-        val endOfDay = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 23)
-            set(Calendar.MINUTE, 59)
-            set(Calendar.SECOND, 59)
-            set(Calendar.MILLISECOND, 999)
-        }.time
-
-        val startOfWeek = Calendar.getInstance().apply {
-            set(Calendar.DAY_OF_WEEK, firstDayOfWeek)
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time
-
+        val endOfDay = DateUtil.getEndOfDay()
+        val startOfWeek = DateUtil.getStartOfWeek()
         return taskRepository.findByCreationDateBetween(startOfWeek, endOfDay)
     }
 
     fun getCurrentMonthTasks(completed: Boolean): List<Task> {
-        val endOfDay = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 23)
-            set(Calendar.MINUTE, 59)
-            set(Calendar.SECOND, 59)
-            set(Calendar.MILLISECOND, 999)
-        }.time
-
-        val startOfMonth = Calendar.getInstance().apply {
-            set(Calendar.DAY_OF_MONTH, 1)
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time
-
+        val endOfDay = DateUtil.getEndOfDay()
+        val startOfMonth = DateUtil.getStartOfMonth()
         return taskRepository.findByCreationDateBetweenAndCompleted(startOfMonth, endOfDay, completed)
     }
 
     fun getCurrentMonthTasks(): List<Task> {
-        val endOfDay = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 23)
-            set(Calendar.MINUTE, 59)
-            set(Calendar.SECOND, 59)
-            set(Calendar.MILLISECOND, 999)
-        }.time
-
-        val startOfMonth = Calendar.getInstance().apply {
-            set(Calendar.DAY_OF_MONTH, 1)
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time
-
+        val endOfDay = DateUtil.getEndOfDay()
+        val startOfMonth = DateUtil.getStartOfMonth()
         return taskRepository.findByCreationDateBetween(startOfMonth, endOfDay)
     }
 }
