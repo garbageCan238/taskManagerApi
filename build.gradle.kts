@@ -29,11 +29,14 @@ dependencies {
 	implementation("com.zaxxer:HikariCP")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	implementation("org.hibernate.orm:hibernate-community-dialects:6.5.2.Final")
-	// testImplementation("org.springframework.security:spring-security-test")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	// testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.mockito:mockito-core:3.11.2")
+	testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 }
 
 kotlin {
