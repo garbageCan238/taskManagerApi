@@ -9,10 +9,8 @@ plugins {
 group = "com.github.ryamal"
 version = "0.0.1-SNAPSHOT"
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+kotlin {
+	jvmToolchain(21)
 }
 
 repositories {
@@ -28,7 +26,7 @@ dependencies {
 	runtimeOnly("mysql:mysql-connector-java:8.0.32")
 	implementation("com.zaxxer:HikariCP")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("com.h2database:h2")
+	implementation("com.h2database:h2")
 	implementation("org.hibernate.orm:hibernate-community-dialects:6.5.2.Final")
 
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
